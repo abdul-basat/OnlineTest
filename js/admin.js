@@ -138,69 +138,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const subjectActions = document.createElement('div');
             subjectActions.className = 'subject-actions';
             
-            // View button
             const viewBtn = document.createElement('button');
             viewBtn.className = 'btn btn-small';
             viewBtn.innerHTML = '<i class="fas fa-eye"></i> View';
             viewBtn.addEventListener('click', () => viewSubject(subject.name));
             
-            // Edit button (added as per admin_copy.js approach)
-            const editBtn = document.createElement('button');
-            editBtn.className = 'btn btn-small btn-primary';
-            editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit';
-            editBtn.addEventListener('click', () => editSubject(subject.name));
-
-            // add manual question
-            document.getElementById('addManualQuestionBtn').addEventListener('click', () => {
-                const q = document.getElementById('manualQuestionText').value.trim();
-                const a = document.getElementById('manualOptionA').value.trim();
-                const b = document.getElementById('manualOptionB').value.trim();
-                const c = document.getElementById('manualOptionC').value.trim();
-                const d = document.getElementById('manualOptionD').value.trim();
-                const correct = document.getElementById('manualCorrectOption').value.trim();
-            
-                if (!q || !a || !b || !c || !d || !correct) {
-                    alert('Please fill out all fields.');
-                    return;
-                }
-            
-                const newQuestion = {
-                    question: q,
-                    optionA: a,
-                    optionB: b,
-                    optionC: c,
-                    optionD: d,
-                    correctAnswer: correct
-                };
-            
-                // Fetch subject from DB
-                let subjects = db.getSubjects();
-                const subjectIndex = subjects.findIndex(sub => sub.name === subjectName);
-            
-                if (subjectIndex !== -1) {
-                    subjects[subjectIndex].questions.push(newQuestion);
-                    subjects[subjectIndex].lastUpdated = new Date().toISOString();
-                    db.saveSubjects(subjects);
-                    alert('Question added successfully!');
-                    
-                    // Optionally clear form
-                    document.getElementById('manualQuestionText').value = '';
-                    document.getElementById('manualOptionA').value = '';
-                    document.getElementById('manualOptionB').value = '';
-                    document.getElementById('manualOptionC').value = '';
-                    document.getElementById('manualOptionD').value = '';
-                    document.getElementById('manualCorrectOption').value = '';
-                }
-            });            
-            
-            // Delete button
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'btn btn-small btn-danger';
             deleteBtn.innerHTML = '<i class="fas fa-trash"></i> Delete';
             deleteBtn.addEventListener('click', () => deleteSubject(subject.name));
             
             subjectActions.appendChild(viewBtn);
-            subjectActions.appendChild(editBtn);
             subjectActions.appendChild(deleteBtn);
             
             subjectItem.appendChild(subjectInfo);
@@ -273,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
         subjectPercentages.appendChild(totalItem);
     }
     
-    // Update total percentage (using neutral color as in admin_copy.js)
+    // Update total percentage
     function updateTotalPercentage() {
         const percentageInputs = document.querySelectorAll('.percentage-input');
         const checkboxes = document.querySelectorAll('.subject-checkbox');
@@ -288,7 +236,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const totalPercentage = document.getElementById('totalPercentage');
         totalPercentage.textContent = `${total}%`;
-        totalPercentage.style.color = '#333';
+        
+        // Highlight if not 100%
+        if (total === 100) {
+            totalPercentage.style.color = '#4CAF50';
+        } else {
+            totalPercentage.style.color = '#F44336';
+        }
     }
     
     // View subject
@@ -317,323 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show message
             alert(`Subject "${subjectName}" has been deleted`);
         }
-    }
-    
-    // Edit subject - new function based on admin_copy.js
-    function editSubject(subjectName) {
-        const questions = db.getSubjectQuestions(subjectName);
-        // Show edit modal
-        showEditModal(subjectName, questions);
-    }
-    
-    // Show edit modal - new function based on admin_copy.js
-    function showEditModal(subjectName, questions) {
-        // Create modal container
-        const modalContainer = document.createElement('div');
-        modalContainer.className = 'modal-container';
-        
-        // Create modal content
-        const modalContent = document.createElement('div');
-        modalContent.className = 'modal-content';
-        
-        // Create modal header
-        const modalHeader = document.createElement('div');
-        modalHeader.className = 'modal-header';
-        
-        const modalTitle = document.createElement('h2');
-        modalTitle.textContent = `Edit Questions - ${subjectName}`;
-        
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'modal-close';
-        closeBtn.innerHTML = '&times;';
-        closeBtn.addEventListener('click', () => document.body.removeChild(modalContainer));
-        
-        modalHeader.appendChild(modalTitle);
-        modalHeader.appendChild(closeBtn);
-        
-        // Create modal body
-        const modalBody = document.createElement('div');
-        modalBody.className = 'modal-body';
-        
-        // Create questions table
-        const questionsTable = document.createElement('div');
-        questionsTable.className = 'edit-questions-table';
-        
-        // Add table header
-        const tableHeader = document.createElement('div');
-        tableHeader.className = 'edit-row header';
-        
-        const headerCells = ['#', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Correct', 'Actions'];
-        headerCells.forEach(cellText => {
-            const cell = document.createElement('div');
-            cell.className = 'edit-cell';
-            cell.textContent = cellText;
-            tableHeader.appendChild(cell);
-        });
-        
-        questionsTable.appendChild(tableHeader);
-        
-        // Add questions rows
-        questions.forEach((question, index) => {
-            const row = document.createElement('div');
-            row.className = 'edit-row';
-            row.dataset.index = index;
-            
-            // Index cell
-            const indexCell = document.createElement('div');
-            indexCell.className = 'edit-cell';
-            indexCell.textContent = index + 1;
-            row.appendChild(indexCell);
-            
-            // Question cell
-            const questionCell = document.createElement('div');
-            questionCell.className = 'edit-cell';
-            const questionInput = document.createElement('input');
-            questionInput.type = 'text';
-            questionInput.value = question.question;
-            questionInput.className = 'edit-input question-input';
-            questionCell.appendChild(questionInput);
-            row.appendChild(questionCell);
-            
-            // Option cells
-            ['A', 'B', 'C', 'D'].forEach((option, optIndex) => {
-                const optionCell = document.createElement('div');
-                optionCell.className = 'edit-cell';
-                const optionInput = document.createElement('input');
-                optionInput.type = 'text';
-                optionInput.value = question.options[optIndex];
-                optionInput.className = 'edit-input option-input';
-                optionCell.appendChild(optionInput);
-                row.appendChild(optionCell);
-            });
-            
-            // Correct answer cell
-            const correctCell = document.createElement('div');
-            correctCell.className = 'edit-cell';
-            const correctSelect = document.createElement('select');
-            correctSelect.className = 'edit-select';
-            ['A', 'B', 'C', 'D'].forEach((option, optIndex) => {
-                const optionEl = document.createElement('option');
-                optionEl.value = optIndex;
-                optionEl.textContent = option;
-                if (optIndex === question.correctAnswer) {
-                    optionEl.selected = true;
-                }
-                correctSelect.appendChild(optionEl);
-            });
-            correctCell.appendChild(correctSelect);
-            row.appendChild(correctCell);
-            
-            // Actions cell
-            const actionsCell = document.createElement('div');
-            actionsCell.className = 'edit-cell';
-            
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'btn btn-small btn-danger';
-            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-            deleteBtn.addEventListener('click', () => {
-                if (confirm('Are you sure you want to delete this question?')) {
-                    row.remove();
-                }
-            });
-            
-            actionsCell.appendChild(deleteBtn);
-            row.appendChild(actionsCell);
-            
-            questionsTable.appendChild(row);
-        });
-        
-        modalBody.appendChild(questionsTable);
-        
-        // Create modal footer
-        const modalFooter = document.createElement('div');
-        modalFooter.className = 'modal-footer';
-        
-        const cancelBtn = document.createElement('button');
-        cancelBtn.className = 'btn btn-secondary';
-        cancelBtn.textContent = 'Cancel';
-        cancelBtn.addEventListener('click', () => document.body.removeChild(modalContainer));
-        
-        const saveBtn = document.createElement('button');
-        saveBtn.className = 'btn btn-primary';
-        saveBtn.textContent = 'Save Changes';
-        saveBtn.addEventListener('click', () => {
-            // Get all question rows (excluding header)
-            const rows = questionsTable.querySelectorAll('.edit-row:not(.header)');
-            
-            // Create updated questions array
-            const updatedQuestions = Array.from(rows).map(row => {
-                const inputs = row.querySelectorAll('input');
-                const select = row.querySelector('select');
-                
-                return {
-                    question: inputs[0].value,
-                    options: [inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value],
-                    correctAnswer: parseInt(select.value)
-                };
-            });
-            
-            // Update subject questions in db
-            db.updateSubjectQuestions(subjectName, updatedQuestions);
-            
-            // Reload subjects list
-            loadSubjects();
-            
-            // Show success message
-            alert(`Subject "${subjectName}" has been updated with ${updatedQuestions.length} questions`);
-            
-            // Close modal
-            document.body.removeChild(modalContainer);
-        });
-        
-        modalFooter.appendChild(cancelBtn);
-        modalFooter.appendChild(saveBtn);
-        
-        // Assemble modal
-        modalContent.appendChild(modalHeader);
-        modalContent.appendChild(modalBody);
-        modalContent.appendChild(modalFooter);
-        modalContainer.appendChild(modalContent);
-        
-        // Add modal styles if not already in CSS
-        if (!document.getElementById('modal-styles')) {
-            const style = document.createElement('style');
-            style.id = 'modal-styles';
-            style.textContent = `
-                .modal-container {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 1000;
-                }
-                
-                .modal-content {
-                    background-color: #fff;
-                    border-radius: 8px;
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                    width: 90%;
-                    max-width: 1200px;
-                    max-height: 90vh;
-                    display: flex;
-                    flex-direction: column;
-                }
-                
-                .modal-header {
-                    padding: 15px 20px;
-                    border-bottom: 1px solid #ddd;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-                
-                .modal-header h2 {
-                    margin: 0;
-                    font-size: 20px;
-                    color: #333;
-                }
-                
-                .modal-close {
-                    background: none;
-                    border: none;
-                    font-size: 24px;
-                    cursor: pointer;
-                    color: #666;
-                }
-                
-                .modal-body {
-                    padding: 20px;
-                    overflow-y: auto;
-                    max-height: calc(90vh - 130px);
-                }
-                
-                .modal-footer {
-                    padding: 15px 20px;
-                    border-top: 1px solid #ddd;
-                    display: flex;
-                    justify-content: flex-end;
-                    gap: 10px;
-                }
-                
-                .edit-questions-table {
-                    width: 100%;
-                    border: 1px solid #ddd;
-                    border-radius: 5px;
-                    overflow: hidden;
-                }
-                
-                .edit-row {
-                    display: flex;
-                    border-bottom: 1px solid #ddd;
-                }
-                
-                .edit-row:last-child {
-                    border-bottom: none;
-                }
-                
-                .edit-row.header {
-                    background-color: #f5f5f5;
-                    font-weight: 500;
-                }
-                
-                .edit-cell {
-                    padding: 10px;
-                    border-right: 1px solid #ddd;
-                    display: flex;
-                    align-items: center;
-                }
-                
-                .edit-cell:first-child {
-                    width: 50px;
-                    justify-content: center;
-                }
-                
-                .edit-cell:nth-child(2) {
-                    flex: 2;
-                }
-                
-                .edit-cell:nth-child(3),
-                .edit-cell:nth-child(4),
-                .edit-cell:nth-child(5),
-                .edit-cell:nth-child(6) {
-                    flex: 1;
-                }
-                
-                .edit-cell:nth-child(7) {
-                    width: 80px;
-                    justify-content: center;
-                }
-                
-                .edit-cell:last-child {
-                    width: 80px;
-                    border-right: none;
-                    justify-content: center;
-                }
-                
-                .edit-input {
-                    width: 100%;
-                    padding: 5px;
-                    border: 1px solid #ddd;
-                    border-radius: 3px;
-                }
-                
-                .edit-select {
-                    width: 100%;
-                    padding: 5px;
-                    border: 1px solid #ddd;
-                    border-radius: 3px;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Add modal to body
-        document.body.appendChild(modalContainer);
     }
     
     // Load posts
@@ -731,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Validate total questions (admin.js allowed 10-500)
+        // Validate total questions
         if (isNaN(totalQuestions) || totalQuestions < 10 || totalQuestions > 500) {
             alert('Please enter a valid number of questions (10-500)');
             totalQuestionsInput.focus();
@@ -762,10 +399,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Validate total percentage
-        //if (totalPercentage !== 100) {
-         //   alert('Total percentage must be 100%');
-         //   return;
-        //}
+        if (totalPercentage !== 100) {
+            alert('Total percentage must be 100%');
+            return;
+        }
         
         // Create question package
         const questionPackage = db.createQuestionPackage(postName, subjectSelections, totalQuestions);
@@ -1026,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function() {
         saveQuestionsBtn.disabled = quizQuestions.length === 0;
     }
     
-    // Show preview (using admin.js layout)
+    // Show preview
     function showPreview(questions) {
         // Clear previous preview
         previewTable.innerHTML = '';
@@ -1154,16 +791,3 @@ document.addEventListener('DOMContentLoaded', function() {
         return date.toLocaleString();
     }
 });
-
-// Add updateSubjectQuestions method to database if db exists
-if (typeof db !== 'undefined') {
-    db.updateSubjectQuestions = function(subjectName, questions) {
-        if (this.subjects[subjectName]) {
-            this.subjects[subjectName].questions = questions;
-            this.subjects[subjectName].lastUpdated = new Date().toISOString();
-            this.saveData();
-            return true;
-        }
-        return false;
-    };
-}
