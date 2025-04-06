@@ -1,0 +1,657 @@
+/* Admin Panel Styles */
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.admin-header {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.admin-header p {
+    margin: 5px 0 0;
+    opacity: 0.8;
+}
+
+/* Tabs */
+.admin-tabs {
+    display: flex;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.3s;
+    flex: 1;
+    text-align: center;
+}
+
+.tab-button:hover {
+    background-color: #e9e9e9;
+}
+
+.tab-button.active {
+    background-color: #fff;
+    color: #0056b3;
+    border-bottom: 3px solid #0056b3;
+}
+
+/* Tab Content */
+.admin-content {
+    padding: 20px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-box:hover, .upload-box.dragover {
+    border-color: #0056b3;
+    background-color: rgba(0, 86, 179, 0.05);
+}
+
+.upload-box i {
+    font-size: 48px;
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.upload-box h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.upload-box p {
+    color: #666;
+    margin: 0;
+}
+
+.file-info {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+}
+
+.file-details i {
+    font-size: 24px;
+    color: #0056b3;
+    margin-right: 10px;
+}
+
+.file-name-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.file-size {
+    font-size: 12px;
+    color: #666;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.btn-icon:hover {
+    color: #f44336;
+}
+
+/* Subject Section */
+.subject-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.subject-section h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Excel Format */
+.excel-format {
+    margin-bottom: 20px;
+}
+
+.excel-format h3 {
+    color: #333;
+}
+
+.format-table {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.format-row {
+    display: flex;
+}
+
+.format-row.header {
+    background-color: #f5f5f5;
+    font-weight: 500;
+}
+
+.format-cell {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.format-cell:last-child {
+    border-right: none;
+}
+
+.format-row:last-child .format-cell {
+    border-bottom: none;
+}
+
+.note {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Preview Section */
+.preview-section {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.preview-section h3 {
+    color: #333;
+}
+
+.preview-table {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.preview-row {
+    display: flex;
+}
+
+.preview-row.header {
+    background-color: #f5f5f5;
+    font-weight: 500;
+}
+
+.preview-cell {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.preview-cell:first-child {
+    flex: 2;
+}
+
+.preview-cell:last-child {
+    border-right: none;
+}
+
+.preview-row:last-child .preview-cell {
+    border-bottom: none;
+}
+
+/* Subjects List Section */
+.subjects-list-section {
+    margin-bottom: 20px;
+}
+
+.subjects-list-section h3 {
+    color: #333;
+}
+
+.subjects-list {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.subject-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.subject-item:last-child {
+    border-bottom: none;
+}
+
+.subject-info h4 {
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.subject-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.subject-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Posts Management */
+.posts-management {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.posts-form {
+    flex: 1;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.posts-list-section {
+    flex: 1;
+}
+
+.subject-selection {
+    margin-top: 20px;
+}
+
+.subject-percentages {
+    margin-top: 10px;
+}
+
+.subject-percentage-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.percentage-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+}
+
+.subject-percentage-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Checkbox Container */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 3px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #0056b3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Posts List */
+.posts-list {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-info h4 {
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.post-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Candidates Management */
+.candidates-management {
+    margin-bottom: 20px;
+}
+
+.candidates-actions {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.candidates-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.candidates-table th, .candidates-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.candidates-table th {
+    background-color: #f5f5f5;
+    font-weight: 500;
+}
+
+.candidates-table tr:last-child td {
+    border-bottom: none;
+}
+
+.candidates-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.no-data {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+/* Admin Footer */
+.admin-footer {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #308bf3;
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #0056b3;
+    color: #fff;
+    border: 1px solid #0056b3;
+}
+
+.btn-secondary:hover {
+    background-color: #004494;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-tabs {
+        flex-direction: column;
+    }
+    
+    .preview-row {
+        flex-direction: column;
+    }
+    
+    .preview-cell {
+        border-right: none;
+    }
+    
+    .posts-management {
+        flex-direction: column;
+    }
+    
+    .subject-percentage-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .percentage-input {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .candidates-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .manual-question-section {
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fdfdfd;
+    }
+    
+    .manual-question-section h3 {
+        margin-bottom: 15px;
+        font-size: 20px;
+        color: #333;
+    }
+    
+    .manual-question-section .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .manual-question-section label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    
+    .manual-question-section input,
+    .manual-question-section textarea,
+    .manual-question-section select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    
+    .manual-question-section textarea {
+        resize: vertical;
+        min-height: 60px;
+    }
+    
+    #addManualQuestionBtn {
+        margin-top: 10px;
+        padding: 10px 20px;
+    }
+    
+}
