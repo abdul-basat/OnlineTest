@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/result.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="result-container">
+            <div class="result-header">
+                <h1>Quiz Completed</h1>
+                <p>Thank you for completing the quiz</p>
+            </div>
+            
+            <div class="result-content">
+                <div class="score-card">
+                    <div class="score-circle">
+                        <div class="score-value" id="scoreValue">0</div>
+                        <div class="score-total" id="scoreTotal">/0</div>
+                    </div>
+                    <div class="score-label">Your Score</div>
+                </div>
+                
+                <div class="result-details">
+                    <div class="detail-item">
+                        <i class="fas fa-user"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Candidate</div>
+                            <div class="detail-value" id="candidateName">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-id-card"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Roll No</div>
+                            <div class="detail-value" id="candidateRollNo">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Time Taken</div>
+                            <div class="detail-value" id="timeTaken">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Correct Answers</div>
+                            <div class="detail-value" id="correctAnswers">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-times-circle"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Incorrect Answers</div>
+                            <div class="detail-value" id="incorrectAnswers">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-minus-circle"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Skipped Questions</div>
+                            <div class="detail-value" id="skippedQuestions">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-balance-scale"></i>
+                        <div class="detail-content">
+                            <div class="detail-label">Marking Type</div>
+                            <div class="detail-value" id="markingType">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-footer">
+                <button id="viewAnswersBtn" class="btn btn-secondary">View Answers</button>
+                <button id="newQuizBtn" class="btn btn-primary">Start New Quiz</button>
+            </div>
+            
+            <div class="answers-section" id="answersSection">
+                <h2>Question Analysis</h2>
+                <div class="answers-list" id="answersList">
+                    <!-- Answer items will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/result.js"></script>
+</body>
+</html>

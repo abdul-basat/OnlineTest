@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Confirmation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/confirmation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="confirmation-container">
+            <div class="confirmation-header">
+                <h1>Quiz Confirmation</h1>
+                <p>Please confirm your details before starting the quiz</p>
+            </div>
+            <div class="confirmation-content">
+                <div class="candidate-details">
+                    <h2>Candidate Information</h2>
+                    <div class="details-row">
+                        <div class="detail-label">Name:</div>
+                        <div class="detail-value" id="candidateName">-</div>
+                    </div>
+                    <div class="details-row">
+                        <div class="detail-label">Roll No:</div>
+                        <div class="detail-value" id="candidateRollNo">-</div>
+                    </div>
+                    <div class="details-row">
+                        <div class="detail-label">Mobile No:</div>
+                        <div class="detail-value" id="candidateMobile">-</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-options">
+                    <h2>Quiz Options</h2>
+                    <div class="form-group">
+                        <label for="postSelect"><i class="fas fa-briefcase"></i> Select Post</label>
+                        <select id="postSelect" required>
+                            <option value="" disabled selected>-- Select Post --</option>
+                            <!-- Posts will be loaded dynamically -->
+                        </select>
+                        <div class="error-message" id="postError"></div>
+                    </div>
+                    
+                    <div class="form-group marking-type">
+                        <p>Marking Type:</p>
+                        <div class="radio-group">
+                            <input type="radio" id="normalMarking" name="markingType" value="normal" checked>
+                            <label for="normalMarking">Normal Marking</label>
+                            <div class="marking-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="tooltip">Each correct answer: +1 point<br>Wrong answer: 0 points</span>
+                            </div>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="negativeMarking" name="markingType" value="negative">
+                            <label for="negativeMarking">Negative Marking</label>
+                            <div class="marking-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="tooltip">Each correct answer: +2 point<br>Wrong answer: -1 points</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-instructions">
+                    <h2>Instructions</h2>
+                    <ul>
+                        <li>You will have 2 minutes for each question.</li>
+                        <li>You can skip questions and return to them later.</li>
+                        <li>Once you click "Save & Next", you cannot change your answer.</li>
+                        <li>The quiz will automatically submit when time expires.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="confirmation-footer">
+                <button id="backButton" class="btn btn-secondary">Back</button>
+                <button id="startQuizButton" class="btn btn-primary">Start Quiz</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/database.js"></script>
+    <script src="js/confirmation.js"></script>
+</body>
+</html>

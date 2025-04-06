@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Futeac Header -->
+    <div class="futeac-header">
+        <!-- <img src="images/futeac-logo.png" alt="Futeac Logo" class="futeac-logo">
+        <div class="futeac-title"> -->
+            <h1>FUTURE TECH ACADEMY</h1>
+            <!-- <p>Providing help to secure your future<br>The Premier Testing Website in Pakistan</p> -->
+        </div>
+    </div>
+
+    <div class="quiz-container">
+        <!-- Left Sidebar - Candidate Info -->
+        <div class="sidebar left-sidebar">
+            <div class="candidate-profile">
+                <div class="profile-image">
+                    <img src="images/default-avatar.png" alt="Candidate Profile" id="candidateImage">
+                </div>
+                <div class="candidate-info">
+                    <h3>Candidate name</h3>
+                    <p id="candidateName">Muhammad Mushtaq</p>
+                    
+                    <h3>Roll No</h3>
+                    <p id="candidateRollNo">12345</p>
+                    
+                    <h3>Post Name</h3>
+                    <p id="candidatePostName">Computer Operator</p>
+                    
+                    <h3>Department Name</h3>
+                    <p id="candidateDepartment">KPK ESED</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Quiz Content -->
+        <div class="quiz-content">
+            <!-- Timer and Progress Bar -->
+            <div class="quiz-header">
+                <div class="timer-container">
+                    <div class="timer">
+                        <span>Elapsed Time: </span>
+                        <span id="elapsedTime">0:00</span>
+                    </div>
+                    <div class="timer">
+                        <span>Remaining Time: </span>
+                        <span id="remainingTime">2:00</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <span>Completed: </span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                    <span id="progressPercent">0%</span>
+                </div>
+            </div>
+            
+            <!-- Question Area -->
+            <div class="question-container">
+                <div class="question-header">
+                    <h2 id="questionNumber">Question No 1 out of 20</h2>
+                </div>
+                <div class="question-text">
+                    <p id="questionText">What is 15 + 9?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option">
+                        <input type="radio" id="option1" name="answer" value="0">
+                        <label for="option1">24</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="option2" name="answer" value="1">
+                        <label for="option2">23</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="option3" name="answer" value="2">
+                        <label for="option3">22</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="option4" name="answer" value="3">
+                        <label for="option4">25</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="navigation-buttons">
+                <button id="skipButton" class="btn btn-skip">Skip</button>
+                <button id="saveNextButton" class="btn btn-save">Save & Next</button>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar - Skipped Questions -->
+        <div class="sidebar right-sidebar">
+            <div class="skipped-questions">
+                <h3>Skipped Questions</h3>
+                <div class="skipped-list" id="skippedList">
+                    <!-- Skipped questions will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/database.js"></script>
+    <script src="js/security.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

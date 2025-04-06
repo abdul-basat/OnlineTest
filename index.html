@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Future Tech Academy</h1>
+                <p>Please enter your details to begin the test</p>
+            </div>
+            <div class="login-form">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="rollNo"><i class="fas fa-id-card"></i> Roll No</label>
+                        <input type="text" id="rollNo" name="rollNo" required>
+                        <div class="error-message" id="rollNoError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNo"><i class="fas fa-mobile-alt"></i> Mobile Number</label>
+                        <input type="tel" id="mobileNo" name="mobileNo" required>
+                        <div class="error-message" id="mobileNoError"></div>
+                    </div>
+                    <!-- Marking type selection moved to confirmation page -->
+                    <div class="form-group">
+                        <button type="submit" id="startQuiz">Start Quiz</button>
+                    </div>
+                </form>
+            </div>
+            <div class="login-footer">
+                <p>Make sure to enter correct details before starting the quiz</p>
+                <p>You will have 2 minutes for each question</p>
+            </div>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+    <script src="js/quran-mcqs.js"></script>
+</body>
+</html>
