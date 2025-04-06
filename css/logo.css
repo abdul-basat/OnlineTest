@@ -1,0 +1,19 @@
+/* ETEA Logo for the quiz website */
+.etea-logo {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.etea-logo::before {
+    content: "ETEA";
+    font-size: 16px;
+    font-weight: bold;
+    color: #0056b3;
+}
